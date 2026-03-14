@@ -138,11 +138,11 @@ function AuthPage() {
 
           <div className="auth-logo">
             <div className="auth-logo-icon">🎟️</div>
-            <div><div className="auth-logo-name">CouponVault</div><div className="auth-logo-tag">Discount &amp; Promotions Manager</div></div>
+            <div><div className="auth-logo-name">discokart</div><div className="auth-logo-tag">Discount &amp; Promotions Manager</div></div>
           </div>
 
           <h2 className="auth-heading">{mode === 'login' ? 'Sign in' : 'Create account'}</h2>
-          <p className="auth-sub">{mode === 'login' ? 'Welcome back! Enter your credentials.' : 'Join CouponVault — choose your role below.'}</p>
+          <p className="auth-sub">{mode === 'login' ? 'Welcome back! Enter your credentials.' : 'Join discokart — choose your role below.'}</p>
 
           {mode === 'register' && (
             <div className="role-tabs">
@@ -198,7 +198,7 @@ function TopBar({ stats }) {
     <header className="topbar">
       <div className="topbar-brand">
         <div className="tb-icon">🎟️</div>
-        <div><div className="tb-name">CouponVault</div><div className="tb-sub">{user?.role === 'admin' ? 'Admin Dashboard' : 'Customer Portal'}</div></div>
+        <div><div className="tb-name">discokart</div><div className="tb-sub">{user?.role === 'admin' ? 'Admin Dashboard' : 'Customer Portal'}</div></div>
       </div>
       {stats && (
         <div className="tb-center">
@@ -575,7 +575,7 @@ function CustomerDashboard() {
           {/* Hero */}
           <div className="cp-hero">
             <div className="cp-hero-left">
-              <h1>🛍️ <span>CouponVault</span> Shop</h1>
+              <h1>🛍️ <span>discokart</span> Shop</h1>
               <p>Add items to your cart, apply a coupon, and save big on your order!</p>
             </div>
             <div className="cp-hero-right">

@@ -221,4 +221,4 @@ app.get('/api/products', authenticate, async (req, res) => {
     } catch (err) { res.status(500).json({ success: false, error: err.message }); }
 });
 
-app.listen(PORT, () => console.log(`🚀 CouponVault API running at http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`🚀 discokart API running at http://localhost:${PORT}`));

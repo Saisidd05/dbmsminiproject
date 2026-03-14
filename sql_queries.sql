@@ -1,5 +1,5 @@
 -- ============================================================
---  CouponVault – Discount & Coupon Database
+--  discokart – Discount & Coupon Database
 --  SQL Queries (MySQL / SQLite Compatible)
 -- ============================================================
 
