@@ -1,0 +1,7 @@
+node_modules/
+.env
+.DS_Store
+client/dist/
+server/coupons.db
+server/users.db
+server/data/products.db
