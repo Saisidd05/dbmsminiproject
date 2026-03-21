@@ -67,44 +67,75 @@ CREATE TABLE IF NOT EXISTS products (
 -- SECTION 2: DML – INSERT (SEED DATA)
 -- ============================================================
 
--- 2.1 Insert Admin User (password: admin123)
+-- 2.1 Insert Users (Admins and Customers)
 INSERT INTO users (name, email, password, role) VALUES
-('Admin User',    'admin@test.com',    '$2a$10$hashedpassword1', 'admin'),
-('Test Customer', 'customer@test.com', '$2a$10$hashedpassword2', 'customer'),
-('Priya S',       'priya@test.com',    '$2a$10$hashedpassword3', 'customer'),
-('Ravi K',        'ravi@test.com',     '$2a$10$hashedpassword4', 'customer');
+('Admin User',       'admin@test.com',       '$2a$10$hashedpassword1', 'admin'),
+('System Admin',     'sysadmin@test.com',    '$2a$10$hashedpassword1', 'admin'),
+('Siva Kumar',       'siva@test.com',        '$2a$10$hashedpassword2', 'customer'),
+('Priya S',          'priya@test.com',       '$2a$10$hashedpassword3', 'customer'),
+('Ravi K',           'ravi@test.com',        '$2a$10$hashedpassword4', 'customer'),
+('Karthik Raja',     'karthik@test.com',     '$2a$10$hashedpassword5', 'customer'),
+('Deepa N',          'deepa@test.com',       '$2a$10$hashedpassword6', 'customer'),
+('Aravind M',        'aravind@test.com',     '$2a$10$hashedpassword7', 'customer'),
+('Meena V',          'meena@test.com',       '$2a$10$hashedpassword8', 'customer'),
+('Vijay P',          'vijay@test.com',       '$2a$10$hashedpassword9', 'customer'),
+('Anitha R',         'anitha@test.com',      '$2a$10$hashedpass10',    'customer'),
+('Suresh G',         'suresh@test.com',      '$2a$10$hashedpass11',    'customer');
 
 -- 2.2 Insert Sample Coupons
 INSERT INTO coupons
-    (code, description, discount_type, discount_value, min_order_value, valid_from, valid_until, usage_limit)
+    (code, description, discount_type, discount_value, min_order_value, valid_from, valid_until, usage_limit, usage_count, is_active)
 VALUES
-    ('SAVE20',    'Get 20% off on all items',              'percentage', 20,  500,  '2026-01-01', '2026-12-31', 100),
-    ('FLAT150',   'Flat ₹150 off on orders above ₹999',   'fixed',      150, 999,  '2026-01-01', '2026-06-30', 50),
-    ('WELCOME10', '10% off for new customers',             'percentage', 10,  0,    '2026-01-01', '2026-12-31', 200),
-    ('SUMMER30',  '30% Summer Sale discount',              'percentage', 30,  1000, '2026-04-01', '2026-06-30', 75),
-    ('FLASH500',  '₹500 flat discount on premium orders',  'fixed',      500, 2500, '2026-03-01', '2026-03-31', 20);
+    ('SAVE20',     'Get 20% off on all items',              'percentage', 20,   500,  '2026-01-01', '2026-12-31', 100, 5,   TRUE),
+    ('FLAT150',    'Flat ₹150 off on orders above ₹999',   'fixed',      150,  999,  '2026-01-01', '2026-06-30', 50,  2,   TRUE),
+    ('WELCOME10',  '10% off for new customers',             'percentage', 10,   0,    '2026-01-01', '2026-12-31', 200, 3,   TRUE),
+    ('SUMMER30',   '30% Summer Sale discount',              'percentage', 30,   1000, '2026-04-01', '2026-06-30', 75,  0,   TRUE),
+    ('FLASH500',   '₹500 flat discount on premium orders',  'fixed',      500,  2500, '2026-03-01', '2026-03-31', 20,  1,   TRUE),
+    ('DISWALI50',  'Diwali Dhamaka 50% Off',                'percentage', 50,   2000, '2026-10-01', '2026-11-15', 500, 0,   TRUE),
+    ('TechFest25', '25% Off on Electronics',                'percentage', 25,   1500, '2026-02-01', '2026-04-30', 100, 2,   TRUE),
+    ('FLAT50',     '₹50 off on small orders',               'fixed',      50,   200,  '2026-01-01', '2026-12-31', 1000,10,  TRUE),
+    ('MONSOON15',  '15% off during rainy season',           'percentage', 15,   600,  '2026-07-01', '2026-09-30', 200, 0,   TRUE),
+    ('EXPIRED100', 'Old ₹100 flat discount',                'fixed',      100,  500,  '2025-01-01', '2025-12-31', 100, 100, FALSE);
 
 -- 2.3 Insert Sample Redemption History
-INSERT INTO redemptions (coupon_id, user_id, order_value, discount_amount, final_amount) VALUES
-(1, 2, 1000.00, 200.00, 800.00),
-(3, 3, 500.00,  50.00,  450.00),
-(1, 4, 1500.00, 300.00, 1200.00),
-(2, 2, 1200.00, 150.00, 1050.00);
+INSERT INTO redemptions (coupon_id, user_id, order_value, discount_amount, final_amount, redeemed_at) VALUES
+(1, 3, 1000.00,  200.00,  800.00,   '2026-01-15 10:30:00'),
+(3, 4, 500.00,   50.00,   450.00,   '2026-01-16 11:45:00'),
+(1, 5, 1500.00,  300.00,  1200.00,  '2026-01-20 09:15:00'),
+(2, 3, 1200.00,  150.00,  1050.00,  '2026-02-05 14:20:00'),
+(7, 6, 2000.00,  500.00,  1500.00,  '2026-02-10 16:00:00'),
+(8, 7, 350.00,   50.00,   300.00,   '2026-02-15 18:30:00'),
+(1, 8, 800.00,   160.00,  640.00,   '2026-02-20 12:10:00'),
+(5, 9, 3000.00,  500.00,  2500.00,  '2026-03-05 08:30:00'),
+(1, 10, 600.00,  120.00,  480.00,   '2026-03-10 20:45:00'),
+(3, 11, 400.00,  40.00,   360.00,   '2026-03-12 21:00:00'),
+(8, 12, 250.00,  50.00,   200.00,   '2026-03-14 15:50:00'),
+(2, 4, 1800.00,  150.00,  1650.00,  '2026-03-15 10:05:00'),
+(1, 6, 2200.00,  440.00,  1760.00,  '2026-03-18 19:25:00'),
+(7, 8, 1600.00,  400.00,  1200.00,  '2026-03-20 13:40:00');
 
 -- 2.4 Insert Sample Products
 INSERT INTO products (name, price, category, emoji, rating, reviews) VALUES
-('Wireless Headphones', 1499.00, 'Electronics', '🎧', 4.5, 128),
-('Mechanical Keyboard', 2999.00, 'Electronics', '⌨️', 4.7, 86),
-('Casual T-Shirt', 499.00, 'Clothing', '👕', 4.2, 214),
-('Running Shoes', 1999.00, 'Footwear', '👟', 4.6, 183),
-('Coffee Mug', 349.00, 'Kitchen', '☕', 4.8, 302),
-('Backpack', 1299.00, 'Accessories', '🎒', 4.4, 95),
-('Sunglasses', 799.00, 'Accessories', '🕶️', 4.3, 67),
-('Water Bottle', 599.00, 'Kitchen', '🍶', 4.6, 421),
-('Bluetooth Speaker', 2499.00, 'Electronics', '🔊', 4.5, 158),
-('Desk Lamp', 899.00, 'Furniture', '💡', 4.4, 77),
-('Yoga Mat', 699.00, 'Sports', '🧘', 4.7, 199),
-('Notebook Set', 249.00, 'Stationery', '📓', 4.5, 342);
+('Wireless Headphones Pro', 1499.00, 'Electronics', '🎧', 4.5, 128),
+('Mechanical Keyboard RGB', 2999.00, 'Electronics', '⌨️', 4.7, 86),
+('Casual T-Shirt (Blue)',   499.00,  'Clothing',    '👕', 4.2, 214),
+('Running Shoes V2',        1999.00, 'Footwear',    '👟', 4.6, 183),
+('Coffee Mug (Ceramic)',    349.00,  'Kitchen',     '☕', 4.8, 302),
+('Travel Backpack',         1299.00, 'Accessories', '🎒', 4.4, 95),
+('Aviator Sunglasses',      799.00,  'Accessories', '🕶️', 4.3, 67),
+('Steel Water Bottle',      599.00,  'Kitchen',     '🍶', 4.6, 421),
+('Bluetooth Speaker Mini',  2499.00, 'Electronics', '🔊', 4.5, 158),
+('LED Desk Lamp',           899.00,  'Furniture',   '💡', 4.4, 77),
+('Yoga Mat (Non-slip)',     699.00,  'Sports',      '🧘', 4.7, 199),
+('Notebook Set 3-Pack',     249.00,  'Stationery',  '📓', 4.5, 342),
+('Gaming Mouse',            1299.00, 'Electronics', '🖱️', 4.8, 310),
+('Smart Watch Series 5',    4999.00, 'Electronics', '⌚', 4.6, 450),
+('Cotton Jeans',            1199.00, 'Clothing',    '👖', 4.1, 150),
+('Leather Wallet',          850.00,  'Accessories', '👛', 4.5, 80),
+('Protein Shaker',          299.00,  'Sports',      '🥤', 4.3, 210),
+('Office Chair Ergonomic',  6500.00, 'Furniture',   '🪑', 4.7, 115),
+('Smartphone Stand',        199.00,  'Accessories', '📱', 4.2, 88),
+('Dumbbell Set (5kg)',      1500.00, 'Sports',      '🏋️', 4.8, 520);
 
 
 -- ============================================================
